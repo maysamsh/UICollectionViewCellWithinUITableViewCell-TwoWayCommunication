@@ -1,3 +1,3 @@
 # UICollectionViewCellWithinUITableViewCell-TwoWayCommunication
 
-![](name-of-giphy.gif)
+![](demo.gif)
