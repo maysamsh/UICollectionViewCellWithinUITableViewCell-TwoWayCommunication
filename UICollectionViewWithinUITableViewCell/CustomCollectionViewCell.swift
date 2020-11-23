@@ -21,7 +21,7 @@ class CustomCollectionViewCell: UICollectionViewCell, NameDescribable {
     // MARK: - Delegate
     
     var delegate: CustomCollectionViewCellDelegate?
-    
+
     // MARK: - Outlets
     
     @IBOutlet weak var label: UILabel!
@@ -54,15 +54,13 @@ class CustomCollectionViewCell: UICollectionViewCell, NameDescribable {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
-        self.backgroundColor = .white
     }
     
     // MARK: - Private Functions
     
     private func configure() {
         self.translatesAutoresizingMaskIntoConstraints = false
-        
+        self.backgroundColor = .white
         button.setTitle(nil, for: .normal)
         button.setImage(UIImage(systemName: "person.badge.plus"), for: .normal)
         button.setImage(UIImage(systemName: "person.badge.minus"), for: .selected)

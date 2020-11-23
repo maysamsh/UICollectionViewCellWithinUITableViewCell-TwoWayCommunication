@@ -22,6 +22,9 @@ class ViewController: UIViewController {
     
     private var rows = [RowData]()
     
+    var storedOffsets = [Int: CGFloat]()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,6 +64,18 @@ class ViewController: UIViewController {
 
 // MARK: - UITableView Delegate, UITableView Data Source
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let tableViewCell = cell as? CustomTableViewCell else { return }
+        tableViewCell.collectionViewOffset = storedOffsets[indexPath.section] ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+
+        guard let tableViewCell = cell as? CustomTableViewCell else { return }
+        storedOffsets[indexPath.section] = tableViewCell.collectionViewOffset
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return rows.count
     }
