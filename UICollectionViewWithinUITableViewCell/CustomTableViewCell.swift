@@ -16,13 +16,22 @@ class CustomTableViewCell: UITableViewCell, NameDescribable {
     private var customCellsData = [CellDataModel]() {
         didSet {
             DispatchQueue.main.async {
-                let contentOffset = self.collectionView.contentOffset
                 self.collectionView.reloadData()
                 self.collectionView.layoutIfNeeded()
-                self.collectionView.contentOffset = contentOffset
             }
         }
     }
+    
+    
+    var collectionViewOffset: CGFloat {
+        set {
+            collectionView.contentOffset.x = newValue
+        }
+        get {
+            return collectionView.contentOffset.x
+        }
+    }
+    
         
     // MARK: - Outlets
     
@@ -37,7 +46,6 @@ class CustomTableViewCell: UITableViewCell, NameDescribable {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.customCellsData = []
     }
     // MARK: Private Functions
     
